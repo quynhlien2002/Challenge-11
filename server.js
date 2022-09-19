@@ -30,8 +30,27 @@ app.get('/api/notes/', (req, res) => {
 })
 
 app.post('/api/notes', (req, res) => {
-    notes = req.body;
-    res.push(notes);
+    console.info(`${req.method} request received to add a review `)
+
+    const { title, task } = req.body;
+
+    if (title && task) {
+        const newNote = {
+            title, 
+            task,
+        };
+
+        const response = {
+            status: 'sucess', 
+            body: newNote,
+        };
+
+        console.log(response);
+        res.status(201).json(response);
+    } else {
+        res.status(500).json('Error posting note');
+    }
+    
 })
 
 app.get('/*', (req, res) => {
