@@ -1,7 +1,8 @@
-const noteTitle = document.getElementById('note-title');
-const noteHistory = document.getElementById('history');
-const noteTask = document.getElementById('note-task');
-const saveButton = document.getElementById('save');
+var noteTitle = $('.note-title').val();
+var noteHistory = $('.history');
+var noteTask = $('.note-task');
+var saveButton = $('.save');
+
 
 
 const getNote = () => {
@@ -18,19 +19,6 @@ const getNote = () => {
     });
 }
 
-// const postNote = ();
-
-const createNote = () => {
-    const titleInput = noteTitle.value(); 
-    const historyInput = history.value();
-    var titleStorage = localStorage.setItem('titleInput', titleInput);
-    var historyStorage = localStorage.setItem('historyStorage', historyInput);
-
-    titleStorage = localStorage.getItem('titleInput');
-    historyStorage = localStorage.getItem('storageInput');
-
-    titleStorage.append(noteHistory);
-
-};
-
-saveButton.addEventListener('click', createNote);
+saveButton.on('click', function() {
+    console.log(noteTitle);
+})
