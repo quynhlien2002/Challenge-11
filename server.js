@@ -41,10 +41,10 @@ app.post('/api/notes/', (req, res) => {
         note.push(newNote);
     
     fs.writeFileSync("./db/db.json", JSON.stringify(note));
+    console.log(note);
+
     res.status(201).json(note);
 })
-
-console.log(note);
 
 
 app.get('/*', (req, res) => {
