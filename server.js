@@ -6,7 +6,7 @@
 
 const express = require('express');
 const path = require('path');
-// const fs = require('fs');
+const fs = require('fs');
 const note = require('./db/db.json');
 
 const PORT = process.env.PORT || 3000;
@@ -50,6 +50,7 @@ app.post('/api/notes/', (req, res) => {
         res.status(500).json('Error posting note');
     }
     
+    fs.writeFileSync(__dirname, note);
 })
 
 app.get('/*', (req, res) => {
