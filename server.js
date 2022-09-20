@@ -7,7 +7,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const note = require('./db/db.json');
+let note = require('./db/db.json');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -38,19 +38,14 @@ app.post('/api/notes/', (req, res) => {
             title, 
             task,
         };
-
-        const response = {
-            status: 'sucess', 
-            body: newNote,
-        };
-
-        console.log(response);
-        res.status(201).json(response);
+        newNote.id = Math.floor(Math.random()*100);
+        note.push(newNote);
     } else {
         res.status(500).json('Error posting note');
     }
     
-    fs.writeFileSync(__dirname, note);
+    fs.writeFileSync("./db/db.json", JSON.stringify(note));
+    res.status(201).json(note);
 })
 
 app.get('/*', (req, res) => {
